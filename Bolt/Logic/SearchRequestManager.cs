@@ -3,6 +3,7 @@ using Bolt.Repositories;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,18 +20,19 @@ namespace Bolt.Logic
             SearchRequest = searchRequest;
             _context = context;
         }
+
+
         public async Task<IEnumerable<string>> GetTitles()
         {
             try
             {
-                IEnumerable<string> titles;
-                HttpClient httpClient = new HttpClient();
+               
                 HtmlWeb htmlWeb = new HtmlWeb();
                 HtmlDocument htmlDocument = await htmlWeb.LoadFromWebAsync(SearchRequest.Url);
                 HtmlNodeCollection results = htmlDocument.DocumentNode.SelectNodes(SearchRequest.XpathPatern);
                 if (results != null)
                 {
-                    titles = results.Take(5).Select(a => a.InnerText);
+                    IEnumerable<string> titles = results.Take(5).Select(a => a.InnerText);
                     await PersistResults(titles);
                     return titles;
                 }

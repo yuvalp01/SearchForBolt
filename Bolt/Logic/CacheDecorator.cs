@@ -13,7 +13,6 @@ namespace Bolt.Logic
     {
         private readonly ISearchRequestManager _requestManager;
         private readonly IMemoryCache _cache;
-        //TODO: from config
         private const double CACHE_DAYS = 1;
         public ISearchRequest SearchRequest { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

@@ -6,6 +6,7 @@ using Bolt.Logic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,6 +19,7 @@ namespace Bolt.Controllers
 
         private DbSearchContext _context;
         private IMemoryCache _cache;
+        private IConfiguration _config;
         public SearchController(DbSearchContext context, IMemoryCache cache)
         {
             _context = context;
@@ -29,21 +31,12 @@ namespace Bolt.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             ISearchRequest searchRequest = new SearchRequestsFactory(searchWord, engine).GetSearchEngine();
-            SearchRequestManager searchRequestManager = new SearchRequestManager(searchRequest, _context);
+            ISearchRequestManager searchRequestManager = new SearchRequestManager(searchRequest, _context);
             CacheDecorator cacheDecorator = new CacheDecorator(searchRequestManager, _cache);
             IEnumerable<string> titles = await cacheDecorator.GetTitles();
             return Ok(titles);
         }
     }
 }
-//if (!_cache.TryGetValue($"{searchWord}_{engine}", out titles))
-//{
-//    SearchEngine searchEngine = new SearchEngineFactory_old(engine, _context, _cache).GetSearchEngine();
 
-//    results = await searchEngine.GetTitles(searchWord);
-//    if (results == null)
-//    {
-//        return NotFound();
-//    }
-//}
 
