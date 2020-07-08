@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace Bolt.Logic
 {
-    public class SearchEngineFactory
+    public class SearchRequestsFactory
     {
-        private SearchEngine searchEngine;
-        public SearchEngineFactory(string searchEngineName, DbSearchContext context, IMemoryCache cache)
+        private ISearchRequest searchRequest;
+        public SearchRequestsFactory(string searchWord, string searchEngineName)
         {
             
             switch (searchEngineName.ToLower())
             {
                 case "google":
-                    searchEngine = new SearchEngineGoogle(context, cache);
+                    searchRequest = new Google(searchEngineName, searchWord);
                     break;
                 case "bing":
-                    searchEngine = new SearchEngineBing(context, cache);
+                    searchRequest = new Bing(searchEngineName, searchWord);
                     break;
                 default:
                     throw new ArgumentException("Unknown search engine");
             }
         }
-        public SearchEngine GetSearchEngine()
+        public ISearchRequest GetSearchEngine()
         {
-            return searchEngine;
+            return searchRequest;
         }
     }
 }

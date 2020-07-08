@@ -24,7 +24,7 @@ namespace Bolt
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMemoryCache();
             services.AddDbContext<DbSearchContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("boltConnString"),builder =>
+                options.UseSqlServer(Configuration.GetConnectionString("boltSearchConnString"),builder =>
                      builder.EnableRetryOnFailure());
             });
             // In production, the Angular files will be served from this directory
