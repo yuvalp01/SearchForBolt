@@ -12,15 +12,17 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-// import {MatInputModule} from '@angular/material/input';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
   imports: [
     MatButtonModule,
-    MatCheckboxModule,
+    MatListModule,
     MatDatepickerModule,
     TextFieldModule,
-    // MatInputModule,
+    MatInputModule,
     MatFormFieldModule, 
     MatTableModule,
     MatDialogModule,
@@ -34,10 +36,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
   exports: [
     MatButtonModule,
-    MatCheckboxModule,
+    MatListModule,
     MatDatepickerModule,
     TextFieldModule,
-    // MatInputModule,
+    MatInputModule,
     MatFormFieldModule,
     MatTableModule,
     MatDialogModule,

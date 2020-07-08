@@ -9,20 +9,29 @@ import { SearchService } from '../services/search.service';
 export class SearchComponent implements OnInit {
 
   constructor(private searchService: SearchService) { }
-  // searchWord:string;
-  resultsGoogle: string[];
-  resultsBing: string[];
-
+  resultsGoogle: string[] =null;
+  resultsBing: string[] = null;
+  loadingGoogle: boolean = false;
+  loadingBing: boolean = false;
+  clickedOnce:boolean= false;
 
   getResults(searchWord: string) {
+    this.loadingGoogle = true;
+    this.loadingBing = true;
+    this.clickedOnce = true;
+    this.resultsGoogle = null;
+    this.resultsBing = null;
+
     this.searchService.getSearchResults(searchWord, 'Google').subscribe({
-      next: (results) => this.resultsGoogle = results,
+      next: (results) => {this.resultsGoogle = results;  this.loadingGoogle = false;},
       error: err => console.error(err)
+      
     });
     this.searchService.getSearchResults(searchWord, 'Bing').subscribe({
-      next: (results) => this.resultsBing = results,
+      next: (results) =>{ this.resultsBing = results; this.loadingBing = false;},
       error: err => console.error(err)
     });
+
   }
 
   ngOnInit(): void {

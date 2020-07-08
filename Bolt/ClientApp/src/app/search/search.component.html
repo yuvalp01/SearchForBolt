@@ -1,23 +1,52 @@
-<p>search works!</p>
 
 
 
-<input [(ngModel)]="searchWord" type="text"/>
+<!-- 
+<input [(ngModel)]="searchWord" type="text" /> -->
 
-<!-- <mat-form-field class="example-form-field">
-    <mat-label>Clearable input</mat-label>
-    <input matInput type="text" [(ngModel)]="value">
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field> -->
-<button (click)="getResults(searchWord)" mat-raised-button color="primary">Search!</button>
+
+
+
+<mat-form-field >
+  <mat-label>Search</mat-label>
+  <input matInput [(ngModel)]="searchWord">
+</mat-form-field>
+
+<button style="margin-left: 10px;" (click)="getResults(searchWord)" mat-raised-button color="primary">Search!</button>
+
+
+<mat-list> 
+  <mat-spinner *ngIf="loadingGoogle" strokeWidth="3" [diameter]="50"></mat-spinner>
+  <div  *ngIf="clickedOnce">
+    <div style="font-weight: bold;" mat-subheader>Google</div>
+    <div *ngIf="!loadingGoogle && (!resultsGoogle ||resultsGoogle.length==0)">No search results</div>
+  </div>
+
+
+  <mat-list-item *ngFor="let result of resultsGoogle">
+    <div mat-line>{{result}}</div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-spinner  *ngIf="loadingBing" strokeWidth="3" [diameter]="50"></mat-spinner>
+  <div *ngIf="clickedOnce" >
+    <div  style="font-weight: bold;" mat-subheader>Bing</div>
+    <div *ngIf="!loadingBing && (!resultsBing ||resultsBing.length==0)">No search results</div>
+  </div>
+
+  <mat-list-item *ngFor="let result of resultsBing">
+
+    <div mat-line>{{result}}</div>
+  </mat-list-item>
+</mat-list>
+
+
+<!-- 
 Google:
 <p *ngFor="let result of resultsGoogle">
-{{result}}
+  {{result}}
 </p>
 
 Bing:
 <p *ngFor="let result of resultsBing">
-    {{result}}
-    </p>
+  {{result}}
+</p> -->
