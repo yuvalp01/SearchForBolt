@@ -21,7 +21,10 @@ namespace Bolt.Logic
             _context = context;
         }
 
-
+        /// <summary>
+        /// Get the top 5 seach results from the selected search engine
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<string>> GetTitles()
         {
             try
@@ -44,6 +47,11 @@ namespace Bolt.Logic
                 return null;
             }
         }
+        /// <summary>
+        /// Persist the results to the db with the current date
+        /// </summary>
+        /// <param name="titles"></param>
+        /// <returns></returns>
         private async Task PersistResults(IEnumerable<string> titles)
         {
             SearchResultsRepository repository = new SearchResultsRepository(_context);

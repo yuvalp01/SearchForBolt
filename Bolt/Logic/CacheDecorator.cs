@@ -21,7 +21,10 @@ namespace Bolt.Logic
             _requestManager = requestManager;
             _cache = cache;
         }
-
+        /// <summary>
+        /// Try to get the search results' title from the cache. Otherwise, send an http request normaly
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<string>> GetTitles()
         {
             IEnumerable<string> titles;

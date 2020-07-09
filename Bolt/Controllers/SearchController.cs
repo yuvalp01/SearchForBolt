@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bolt.Logic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace Bolt.Controllers
 {
@@ -19,7 +15,6 @@ namespace Bolt.Controllers
 
         private DbSearchContext _context;
         private IMemoryCache _cache;
-        private IConfiguration _config;
         public SearchController(DbSearchContext context, IMemoryCache cache)
         {
             _context = context;
