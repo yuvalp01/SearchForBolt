@@ -6,7 +6,7 @@ using System.Text;
 
 namespace UnitTestBolt
 {
-    class InMemoryDbContextFactory
+    public class InMemoryDbContextFactory
     {
         public DbSearchContext GetMockSearchDbContext()
         {

@@ -7,13 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Mocks\Bing.html" />
     <None Remove="Mocks\GoogleMockResults.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Mocks\Bing.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Mocks\GoogleMockResults.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Mocks\GoogleMockResults.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
 
 
@@ -31,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Mocks\Bing.html" />
     <Resource Include="Mocks\GoogleMockResults.html" />
   </ItemGroup>
 
