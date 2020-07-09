@@ -17,7 +17,7 @@ namespace Bolt.Logic
             SearchWord = searchWord;
             EngineName = engineName;
             Url = $"https://www.google.com/search?q={searchWord}";
-            XpathPatern = "//div[contains(@class,'r')]/h3";
+            XpathPatern = "//div[contains(@class,'r')]//h3";
         }
     }
 }
